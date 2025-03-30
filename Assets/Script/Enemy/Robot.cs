@@ -2,7 +2,7 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Robot : MonoBehaviour
+public class Robot : EnemyHealth
 {
     [SerializeField] Transform target;
     FirstPersonController player;
