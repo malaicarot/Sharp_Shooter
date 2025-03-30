@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] int dame = 1;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] ParticleSystem hitFlash;
     [SerializeField] Animator recoilAnimator;
     StarterAssetsInputs starterAssetsInputs;
 
@@ -37,7 +38,7 @@ public class Weapon : MonoBehaviour
         {
             Robot robot = hit.collider.GetComponent<Robot>();
             robot?.TakeDamage(dame);
-
+            Instantiate(hitFlash, hit.point, Quaternion.identity);
         }
     }
 
