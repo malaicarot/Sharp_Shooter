@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0db83b8916e1e94abd42b985cd2156d, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  Damame: 1
-  FireRate: 0.5
+  Damage: 5
+  FireRate: 1
+  HitFlash: {fileID: 1811424632228169636, guid: d74dfabb0ce708f43ac63894d68c9538, type: 3}
+  Isautomatic: 0

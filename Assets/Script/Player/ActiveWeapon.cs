@@ -21,8 +21,14 @@ public class ActiveWeapon : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
+        // if (weaponSO.Isautomatic)
+        // {
+        //     RifleShoot(starterAssetsInputs.shoot);
+        // }
+        // else
+        // {
         HandleShoot();
+        // }
 
 
     }
@@ -36,8 +42,11 @@ public class ActiveWeapon : MonoBehaviour
             weapon.Shoot(weaponSO);
             timer = 0;
         }
-        starterAssetsInputs.ShootInput(false);
 
-
+        if (!weaponSO.Isautomatic)
+        {
+            starterAssetsInputs.ShootInput(false);
+        }
     }
+
 }

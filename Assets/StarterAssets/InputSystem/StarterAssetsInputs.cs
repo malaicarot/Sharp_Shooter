@@ -47,8 +47,8 @@ namespace StarterAssets
 
 		public void OnShoot(InputValue value){
 			ShootInput(value.isPressed);
-
 		}
+
 #endif
 
 
