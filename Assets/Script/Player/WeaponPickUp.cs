@@ -11,7 +11,6 @@ public class WeaponPickUp : MonoBehaviour
             activeWeapon = other.GetComponentInChildren<ActiveWeapon>();
             activeWeapon.SwitchWeapon(weaponSO);
             Destroy(gameObject);
-
         }
     }
 

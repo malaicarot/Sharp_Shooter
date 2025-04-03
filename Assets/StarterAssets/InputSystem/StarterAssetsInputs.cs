@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool shoot;
+		public bool zoom;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -29,7 +30,7 @@ namespace StarterAssets
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			if (cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -45,8 +46,14 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 
-		public void OnShoot(InputValue value){
+		public void OnShoot(InputValue value)
+		{
 			ShootInput(value.isPressed);
+		}
+
+		public void OnZoom(InputValue value)
+		{
+			ZoomInput(value.isPressed);
 		}
 
 #endif
@@ -55,7 +62,7 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -76,7 +83,11 @@ namespace StarterAssets
 		{
 			shoot = newShootState;
 		}
-		
+		public void ZoomInput(bool newZoomState)
+		{
+			zoom = newZoomState;
+		}
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -87,5 +98,5 @@ namespace StarterAssets
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
+
 }
