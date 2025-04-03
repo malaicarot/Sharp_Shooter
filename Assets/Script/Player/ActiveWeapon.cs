@@ -6,30 +6,20 @@ public class ActiveWeapon : MonoBehaviour
     [SerializeField] Animator recoilAnimator;
     [SerializeField] WeaponSO weaponSO;
     StarterAssetsInputs starterAssetsInputs;
-    Weapon weapon;
+    Weapon currentWeapon;
     const string GUN_RECOIL_ANIMATION = "Recoil";
     float timer = 0;
-
-
 
     void Awake()
     {
         starterAssetsInputs = GetComponentInParent<StarterAssetsInputs>();
-        weapon = GetComponentInChildren<Weapon>();
+        currentWeapon = GetComponentInChildren<Weapon>();
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        // if (weaponSO.Isautomatic)
-        // {
-        //     RifleShoot(starterAssetsInputs.shoot);
-        // }
-        // else
-        // {
         HandleShoot();
-        // }
-
 
     }
 
@@ -39,7 +29,7 @@ public class ActiveWeapon : MonoBehaviour
         if (timer >= weaponSO.FireRate)
         {
             recoilAnimator.Play(GUN_RECOIL_ANIMATION, 0, 0f);
-            weapon.Shoot(weaponSO);
+            currentWeapon.Shoot(weaponSO);
             timer = 0;
         }
 
@@ -47,6 +37,17 @@ public class ActiveWeapon : MonoBehaviour
         {
             starterAssetsInputs.ShootInput(false);
         }
+    }
+
+    public void SwitchWeapon(WeaponSO weaponSO)
+    {
+        if(currentWeapon){
+            Destroy(currentWeapon.gameObject);
+        }
+        Weapon newWeapon = Instantiate(weaponSO.weaponPrefab, transform).GetComponentInChildren<Weapon>();
+        currentWeapon = newWeapon;
+        this.weaponSO = weaponSO;
+        
     }
 
 }
