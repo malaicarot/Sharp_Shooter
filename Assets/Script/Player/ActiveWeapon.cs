@@ -9,6 +9,8 @@ public class ActiveWeapon : MonoBehaviour
     [SerializeField] Animator recoilAnimator;
     [SerializeField] WeaponSO startingWeaponSO;
     [SerializeField] CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] Camera weaponCamera;
+
     [SerializeField] Image ZoomVignette;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] float durationZoomIn = 0.1f;
@@ -88,6 +90,7 @@ public class ActiveWeapon : MonoBehaviour
         if (starterAssetsInputs.zoom)
         {
             if (cinemachineVirtualCamera.m_Lens.FieldOfView == currentWeaponSO.ZoomAmout) return;
+            weaponCamera.fieldOfView = currentWeaponSO.ZoomAmout;
             ProcessZoom(defaultFOV, currentWeaponSO.ZoomAmout, durationZoomIn);
             ZoomVignette.gameObject.SetActive(starterAssetsInputs.zoom);
             firstPersonController.ChangeRotationSpeed(currentWeaponSO.RotationSpeed);
@@ -99,9 +102,11 @@ public class ActiveWeapon : MonoBehaviour
                 elapsedTime = 0;
                 return;
             }
+            weaponCamera.fieldOfView = defaultFOV;
             ProcessZoom(currentWeaponSO.ZoomAmout, defaultFOV, durationZoomOut);
             ZoomVignette.gameObject.SetActive(starterAssetsInputs.zoom);
             firstPersonController.ChangeRotationSpeed(defaultRotationSpeed);
+
 
         }
 
