@@ -7,6 +7,7 @@ public class Robot : EnemyHealth
     [SerializeField] Transform target;
     FirstPersonController player;
     NavMeshAgent navMeshAgent;
+    const string PLAYER_STRING = "Player";
 
     void Awake()
     {
@@ -16,7 +17,15 @@ public class Robot : EnemyHealth
 
     void Update()
     {
+        if(!player) return;
         navMeshAgent.SetDestination(player.transform.position);
-
     }
+
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     // if(CompareTag(PLAYER_STRING)){
+    //     //     EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+    //     //     enemyHealth.SelfDestruct();
+    //     // }
+    // }
 }

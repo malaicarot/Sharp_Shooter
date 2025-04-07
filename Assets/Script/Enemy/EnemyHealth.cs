@@ -1,8 +1,12 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public abstract class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int health = 3;
+    [SerializeField] ParticleSystem ExplodeParticleSystem;
+    [SerializeField] Transform exactTransformRobot;
+
     int currentHealth;
 
 
@@ -17,7 +21,14 @@ public abstract class EnemyHealth : MonoBehaviour
         currentHealth -= dame;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            SelfDestruct();
         }
+    }
+
+    public void SelfDestruct()
+    {
+        Instantiate(ExplodeParticleSystem, exactTransformRobot.position, Quaternion.identity);
+        ExplodeParticleSystem.Play();
+        Destroy(gameObject);
     }
 }

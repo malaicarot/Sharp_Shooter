@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6885042403175817559}
   - component: {fileID: 5081577059959616380}
   - component: {fileID: 2211727539326364066}
+  - component: {fileID: 1842979307448811992}
   m_Layer: 6
   m_Name: Robot
   m_TagString: Untagged
@@ -48,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  ExplodeParticleSystem: {fileID: 673596185201639512, guid: 211501d9047fbd64cbfe62eecd9a4824, type: 3}
+  exactTransformRobot: {fileID: 33112243142709622}
   target: {fileID: 0}
 --- !u!195 &5081577059959616380
 NavMeshAgent:
@@ -91,6 +94,29 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.91
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.45, z: 0}
+--- !u!136 &1842979307448811992
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044811860520734471}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 2
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1.45, z: 0}
