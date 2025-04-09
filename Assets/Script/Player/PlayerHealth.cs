@@ -1,24 +1,62 @@
+using System;
+using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int health = 3;
+    [SerializeField] Transform weaponCamera;
+    [SerializeField] CinemachineVirtualCamera deathVirtualCamera;
+    [SerializeField] GameObject shieldBarParent;
+    [SerializeField] Image shieldBarImg;
+    [Range(1, 10)][SerializeField] int health = 10;
+    [SerializeField] int deathVirtualCameraPriority = 20;
 
 
+    List<Image>shieldBarList;
     int currentHealth;
-
 
     void Start()
     {
+        shieldBarList = new List<Image>();
         currentHealth = health;
+        SetShieldBarUI();
     }
 
 
+    void SetShieldBarUI(){
+        for(int i = 0; i < health; i++){
+            Image image = Instantiate(shieldBarImg);
+            image.transform.SetParent(shieldBarParent.transform);
+            shieldBarList.Add(image);
+            
+        }
+    }
+
+    void DecreaseShieldBar()
+    {
+        for (int i = 0; i < shieldBarList.Count; i++)
+        {
+            if (i < currentHealth)
+            {
+                shieldBarList[i].enabled = true;
+            }
+            else
+            {
+                shieldBarList[i].enabled = false;
+            }
+        }
+    }
     public void TakeDamage(int dame)
     {
         currentHealth -= dame;
+        DecreaseShieldBar();
         if (currentHealth <= 0)
         {
+            weaponCamera.parent = null;
+            deathVirtualCamera.Priority = deathVirtualCameraPriority;
             Destroy(this.gameObject);
         }
     }

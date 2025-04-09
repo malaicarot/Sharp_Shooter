@@ -21,11 +21,11 @@ public class Robot : EnemyHealth
         navMeshAgent.SetDestination(player.transform.position);
     }
 
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     // if(CompareTag(PLAYER_STRING)){
-    //     //     EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
-    //     //     enemyHealth.SelfDestruct();
-    //     // }
-    // }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag(PLAYER_STRING)){
+            EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+            enemyHealth.SelfDestruct();
+        }
+    }
 }
