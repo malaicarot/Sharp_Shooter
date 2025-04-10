@@ -4,13 +4,13 @@ using UnityEngine.AI;
 
 public class Robot : EnemyHealth
 {
-    [SerializeField] Transform target;
     FirstPersonController player;
     NavMeshAgent navMeshAgent;
     const string PLAYER_STRING = "Player";
 
-    void Awake()
+    void Start()
     {
+        Debug.Log(Health);
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = FindFirstObjectByType<FirstPersonController>();
     }
@@ -24,8 +24,7 @@ public class Robot : EnemyHealth
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(PLAYER_STRING)){
-            EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
-            enemyHealth.SelfDestruct();
+            SelfDestruct();
         }
     }
 }

@@ -15,23 +15,31 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int deathVirtualCameraPriority = 20;
 
 
-    List<Image>shieldBarList;
+    List<Image> shieldBarList;
     int currentHealth;
 
-    void Start()
+    void Awake()
     {
         shieldBarList = new List<Image>();
         currentHealth = health;
         SetShieldBarUI();
+
+    }
+    public int GetPlayerHealth
+    {
+        get { return currentHealth; }
     }
 
 
-    void SetShieldBarUI(){
-        for(int i = 0; i < health; i++){
+
+    void SetShieldBarUI()
+    {
+        for (int i = 0; i < health; i++)
+        {
             Image image = Instantiate(shieldBarImg);
             image.transform.SetParent(shieldBarParent.transform);
             shieldBarList.Add(image);
-            
+
         }
     }
 

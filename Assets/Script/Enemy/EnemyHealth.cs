@@ -10,9 +10,12 @@ public abstract class EnemyHealth : MonoBehaviour
     int currentHealth;
 
 
-    void Start()
+    void Awake()
     {
         currentHealth = health;
+    }
+    public int Health{
+        get{return currentHealth;}
     }
 
 
