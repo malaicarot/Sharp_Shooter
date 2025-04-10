@@ -12,7 +12,6 @@ public class SpawnGate : EnemyHealth
 
     void Start()
     {
-        Debug.Log(Health);
         StartCoroutine(SpawnEnemy());
     }
 

@@ -10,7 +10,6 @@ public class Robot : EnemyHealth
 
     void Start()
     {
-        Debug.Log(Health);
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = FindFirstObjectByType<FirstPersonController>();
     }
