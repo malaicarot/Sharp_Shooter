@@ -15,8 +15,6 @@ public class SpawnGate : EnemyHealth
         StartCoroutine(SpawnEnemy());
     }
 
-
-
     IEnumerator SpawnEnemy()
     {
         while (playerHealth)
