@@ -6,6 +6,7 @@ public abstract class EnemyHealth : MonoBehaviour
     [SerializeField] int health = 3;
     [SerializeField] ParticleSystem ExplodeParticleSystem;
     [SerializeField] Transform exactTransformRobot;
+    GameManagers gameManagers;
 
     int currentHealth;
 
@@ -13,7 +14,10 @@ public abstract class EnemyHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = health;
+        gameManagers = FindFirstObjectByType<GameManagers>();
+        gameManagers.AdjustEnemy(1);
     }
+
     public int Health{
         get{return currentHealth;}
     }
@@ -32,6 +36,7 @@ public abstract class EnemyHealth : MonoBehaviour
     {
         Instantiate(ExplodeParticleSystem, exactTransformRobot.position, Quaternion.identity);
         ExplodeParticleSystem.Play();
+        gameManagers.AdjustEnemy(-1);
         Destroy(gameObject);
     }
 }
