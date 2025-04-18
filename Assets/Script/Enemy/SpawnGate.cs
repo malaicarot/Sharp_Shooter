@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Data.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnGate : EnemyHealth
@@ -19,7 +21,11 @@ public class SpawnGate : EnemyHealth
     {
         while (playerHealth)
         {
-            Instantiate(Enemy, spawnPoint.position, Quaternion.identity);
+            PooledObject enemy = EnemyPool.SingleTonItemsPool.GetEnemy("Robot", spawnPoint.position, Quaternion.identity);
+            if (enemy == null)
+            {
+                Debug.LogError("SpawnGate: Enemy not found in pool!");
+            }
             yield return new WaitForSeconds(timeToSpawn);
         }
     }

@@ -1,8 +1,7 @@
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class Robot : EnemyHealth
+public class Robot : EnemyHealth 
 {
     FirstPersonController player;
     NavMeshAgent navMeshAgent;
@@ -23,7 +22,9 @@ public class Robot : EnemyHealth
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(PLAYER_STRING)){
+            
             SelfDestruct();
+
         }
     }
 }

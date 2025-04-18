@@ -18,8 +18,9 @@ public abstract class EnemyHealth : MonoBehaviour
         gameManagers.AdjustEnemy(1);
     }
 
-    public int Health{
-        get{return currentHealth;}
+    public int Health
+    {
+        get { return currentHealth; }
     }
 
 
@@ -37,6 +38,13 @@ public abstract class EnemyHealth : MonoBehaviour
         Instantiate(ExplodeParticleSystem, exactTransformRobot.position, Quaternion.identity);
         ExplodeParticleSystem.Play();
         gameManagers.AdjustEnemy(-1);
-        Destroy(gameObject);
+
+        //Nếu là pool object thì return
+        PooledObject pooledObject = GetComponent<PooledObject>();
+        pooledObject?.Release();
+        if (pooledObject == null)
+        {
+            Destroy(gameObject);
+        }
     }
 }
