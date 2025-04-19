@@ -6,7 +6,6 @@ public class Robot : EnemyHealth
     FirstPersonController player;
     NavMeshAgent navMeshAgent;
     const string PLAYER_STRING = "Player";
-
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();

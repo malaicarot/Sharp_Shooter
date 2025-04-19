@@ -18,6 +18,8 @@ public abstract class EnemyHealth : MonoBehaviour
         gameManagers.AdjustEnemy(1);
     }
 
+  
+
     public int Health
     {
         get { return currentHealth; }

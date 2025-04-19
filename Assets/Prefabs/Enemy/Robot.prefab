@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5304088584346569793}
   - component: {fileID: 6885042403175817559}
-  - component: {fileID: 4503778081627785685}
   - component: {fileID: 5081577059959616380}
   - component: {fileID: 2211727539326364066}
   - component: {fileID: 1842979307448811992}
+  - component: {fileID: 4014153646030277434}
   m_Layer: 6
   m_Name: Robot
   m_TagString: Untagged
@@ -52,18 +52,6 @@ MonoBehaviour:
   health: 10
   ExplodeParticleSystem: {fileID: 673596185201639512, guid: 211501d9047fbd64cbfe62eecd9a4824, type: 3}
   exactTransformRobot: {fileID: 33112243142709622}
---- !u!114 &4503778081627785685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8044811860520734471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433f5a0c2a102c448b00aedc0c96f66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &5081577059959616380
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -132,6 +120,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1.45, z: 0}
+--- !u!114 &4014153646030277434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044811860520734471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8c3282c1be2e04f866c09f88c796ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8938676382495269729
 GameObject:
   m_ObjectHideFlags: 0

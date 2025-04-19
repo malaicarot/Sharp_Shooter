@@ -9,11 +9,12 @@ public class EnemyPool : ObjectPool
         SingleTonItemsPool = this;
     }
 
-    public PooledObject GetEnemy(string name, Vector3 position, Quaternion quaternion)
+    public RobotMarkPool GetEnemy(string name, Vector3 position, Quaternion quaternion)
     {
         PooledObject objOfPool = SingleTonItemsPool.GetPooledObject(name);
-        objOfPool.transform.position = position;
-        objOfPool.transform.rotation = quaternion;
-        return objOfPool;
+        RobotMarkPool robot = objOfPool.GetComponent<RobotMarkPool>();
+        robot.transform.position = position;
+        robot.transform.rotation = quaternion;
+        return robot;
     }
 }
