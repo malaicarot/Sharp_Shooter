@@ -1,24 +1,18 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
-public abstract class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int health = 3;
     [SerializeField] ParticleSystem ExplodeParticleSystem;
     [SerializeField] Transform exactTransformRobot;
-    GameManagers gameManagers;
+    // GameManagers gameManagers;
 
     int currentHealth;
-
 
     void Awake()
     {
         currentHealth = health;
-        gameManagers = FindFirstObjectByType<GameManagers>();
-        gameManagers.AdjustEnemy(1);
     }
-
-  
 
     public int Health
     {
@@ -39,12 +33,12 @@ public abstract class EnemyHealth : MonoBehaviour
     {
         Instantiate(ExplodeParticleSystem, exactTransformRobot.position, Quaternion.identity);
         ExplodeParticleSystem.Play();
-        gameManagers.AdjustEnemy(-1);
-
+        GameManagers.Instance.AdjustEnemy(-1);
+    
         //Nếu là pool object thì return
-        PooledObject pooledObject = GetComponent<PooledObject>();
-        pooledObject?.Release();
-        if (pooledObject == null)
+        RobotMarkPool robot = gameObject.GetComponent<RobotMarkPool>();
+        robot?.RobotRelease();
+        if (robot == null)
         {
             Destroy(gameObject);
         }

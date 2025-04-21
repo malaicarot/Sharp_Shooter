@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour
 
 
 
-    void Awake()
+    void Start()
     {
         SetupPool();
     }
@@ -35,7 +35,7 @@ public class ObjectPool : MonoBehaviour
     }
 
 
-    public PooledObject GetPooledObject(string objectName)
+    public PooledObject GetPooledObject(string objectName, Vector3 objectPosition, Quaternion quaternion)
     {
         if (string.IsNullOrEmpty(objectName) || !pooledDictionary.ContainsKey(objectName))
         {
@@ -45,14 +45,25 @@ public class ObjectPool : MonoBehaviour
 
         if (pooledDictionary[objectName].Count == 0)
         {
-            PooledObject newObject = Instantiate(pooledList.Find(obj => obj.name == objectName));
+            var prefab = pooledList.Find(obj => obj.name == objectName);
+            if(prefab == null){
+                Debug.LogError("Not found this object name!");
+                return null;
+            }
+            PooledObject newObject = Instantiate(prefab);
             newObject._pool = this;
             newObject.gameObject.name = objectName;
+            newObject.gameObject.transform.position = objectPosition;
+            newObject.gameObject.transform.rotation = quaternion;
+
             return newObject;
         }
 
         PooledObject nextObject = pooledDictionary[objectName].Pop();
+        nextObject.gameObject.transform.position = objectPosition;
+        nextObject.gameObject.transform.rotation = quaternion;
         nextObject.gameObject.SetActive(true);
+
         return nextObject;
 
     }

@@ -5,11 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManagers : MonoBehaviour
 {
+    public static GameManagers Instance {get; private set;}
     [SerializeField] GameObject winerPanel;
     [SerializeField] TextMeshProUGUI enemyLeftTextmeshPro;
 
     const string ENEMY_LEFT = "Enemy Left";
     int enemyLeft;
+
+
+
+    void Awake() {
+        if(Instance != null && Instance != this){
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void AdjustEnemy(int amount)
     {
         enemyLeft += amount;
@@ -18,7 +31,6 @@ public class GameManagers : MonoBehaviour
             winerPanel.SetActive(true);
         }
         enemyLeftTextmeshPro.text = $"{ENEMY_LEFT}: {enemyLeft}";
-
     }
 
     public void OnRestart()

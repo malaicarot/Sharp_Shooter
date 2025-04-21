@@ -13,6 +13,7 @@ public class Turret : EnemyHealth
     float fireRate = 2f;
     void Start()
     {
+        GameManagers.Instance.AdjustEnemy(1);
         StartCoroutine(TurretShooting());
     }
 
@@ -26,7 +27,6 @@ public class Turret : EnemyHealth
         while (playerHealth)
         {
             yield return new WaitForSeconds(fireRate);
-
             Projectile projectile = Instantiate(bulletTurret, turretProjectile.position, turretHead.rotation).GetComponent<Projectile>();
             projectile.Init(damage);
         }

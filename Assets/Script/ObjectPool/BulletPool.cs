@@ -14,10 +14,6 @@ public class BulletPool : ObjectPool
 
     public void GetBullet(string objName, Vector3 objPosition, Quaternion quaternion)
     {
-        PooledObject pooledObject = SingletonBulletPool.GetPooledObject(objName);
-        // Weapon bullet = pooledObject.GetComponent<Weapon>();
-        // GameObject gameObject = pooledObject.GetComponent<GameObject>();
-        pooledObject.transform.position = objPosition;
-        pooledObject.transform.rotation = quaternion;
+        PooledObject pooledObject = SingletonBulletPool.GetPooledObject(objName, objPosition, quaternion);
     }
 }
