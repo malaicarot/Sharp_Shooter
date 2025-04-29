@@ -21,3 +21,4 @@ MonoBehaviour:
   ZoomAmout: 10
   RotationSpeed: 0.3
   InitialAmmo: 50
+  indexSFX: 1

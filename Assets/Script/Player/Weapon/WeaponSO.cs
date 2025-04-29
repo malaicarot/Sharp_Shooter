@@ -12,4 +12,5 @@ public class WeaponSO : ScriptableObject
     public float ZoomAmout = 10f;
     public float RotationSpeed = 0.3f;
     public int InitialAmmo = 12;
+    public int indexSFX;
 }

@@ -76,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
         weaponCamera.parent = null;
         deathVirtualCamera.Priority = deathVirtualCameraPriority;
         gameOverPanel.SetActive(true);
+        SoundSingleton.soundInstance.PlayBackgroundMusic(2);
         Destroy(this.gameObject);
     }
 }
