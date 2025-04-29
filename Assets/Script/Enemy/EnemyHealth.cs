@@ -26,6 +26,10 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             SelfDestruct();
+            if (this.gameObject.CompareTag("Boss"))
+            {
+                GameManagers.Instance.Winner();
+            }
         }
     }
 
@@ -33,9 +37,12 @@ public class EnemyHealth : MonoBehaviour
     {
         Instantiate(ExplodeParticleSystem, exactTransformRobot.position, Quaternion.identity);
         ExplodeParticleSystem.Play();
-        GameManagers.Instance.AdjustEnemy(-1);
-    
-        //Nếu là pool object thì return
+        if (!this.gameObject.CompareTag("Boss"))
+        {
+            GameManagers.Instance.AdjustEnemy(-1);
+        }
+
+        //Nếu là opol object thì return
         RobotMarkPool robot = gameObject.GetComponent<RobotMarkPool>();
         robot?.RobotRelease();
         if (robot == null)

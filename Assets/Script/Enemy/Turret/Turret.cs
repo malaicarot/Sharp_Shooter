@@ -13,16 +13,24 @@ public class Turret : EnemyHealth
     float fireRate = 2f;
     void Start()
     {
-        GameManagers.Instance.AdjustEnemy(1);
+        if (!this.gameObject.CompareTag("Boss"))
+        {
+            GameManagers.Instance.AdjustEnemy(1);
+        }
+
         StartCoroutine(TurretShooting());
     }
 
     void Update()
     {
-        turretHead.gameObject.transform.LookAt(targetLookAt);
+        if (!this.gameObject.CompareTag("Boss"))
+        {
+            turretHead.gameObject.transform.LookAt(targetLookAt);
+        }
     }
 
-    IEnumerator TurretShooting(){
+    IEnumerator TurretShooting()
+    {
 
         while (playerHealth)
         {
