@@ -65,8 +65,10 @@ public class PlayerHealth : MonoBehaviour
         DecreaseShieldBar();
         if (currentHealth <= 0)
         {
+            SoundSingleton.soundInstance.PlaySFXPlayer(0);
             PlayerGameOver();
         }
+        SoundSingleton.soundInstance.PlaySFXPlayer(1);
     }
 
     void PlayerGameOver()

@@ -49,7 +49,7 @@ public class GameManagers : MonoBehaviour
     void BossAppear()
     {
         ceiling.gameObject.SetActive(false);
-        StartCoroutine(WaitForMusic());
+        StartCoroutine(WaitForMusic(3));
         playable.Play();
         StartCoroutine(BossFight());
         BossActive(true);
@@ -59,10 +59,10 @@ public class GameManagers : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
     }
-    IEnumerator WaitForMusic()
+    IEnumerator WaitForMusic(int index)
     {
         yield return new WaitForSeconds(2);
-        SoundSingleton.soundInstance.PlayBackgroundMusic(3);
+        SoundSingleton.soundInstance.PlayBackgroundMusic(index);
     }
 
     public void Winner()
@@ -70,7 +70,9 @@ public class GameManagers : MonoBehaviour
         winerPanel.SetActive(true);
         StarterAssetsInputs starterAssets = FindFirstObjectByType<StarterAssetsInputs>();
         starterAssets.SetCursorState(false);
-        SoundSingleton.soundInstance.PlayBackgroundMusic(4);
+        StartCoroutine(WaitForMusic(4));
+
+        // SoundSingleton.soundInstance.PlayBackgroundMusic(4);
     }
     public void AdjustEnemy(int amount)
     {

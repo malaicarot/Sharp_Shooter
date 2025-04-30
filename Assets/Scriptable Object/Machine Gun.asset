@@ -18,7 +18,7 @@ MonoBehaviour:
   HitFlash: {fileID: 1811424632228169636, guid: d74dfabb0ce708f43ac63894d68c9538, type: 3}
   Isautomatic: 1
   CanZoom: 0
-  ZoomAmout: 10
-  RotationSpeed: 0.3
+  ZoomAmout: 0
+  RotationSpeed: 1
   InitialAmmo: 50
   indexSFX: 1
