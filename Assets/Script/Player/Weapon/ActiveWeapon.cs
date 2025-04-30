@@ -90,10 +90,7 @@ public class ActiveWeapon : MonoBehaviour
         if (starterAssetsInputs.zoom)
         {
             if (cinemachineVirtualCamera.m_Lens.FieldOfView == currentWeaponSO.ZoomAmout) return;
-            weaponCamera.fieldOfView = currentWeaponSO.ZoomAmout;
-            ProcessZoom(defaultFOV, currentWeaponSO.ZoomAmout, durationZoomIn);
-            ZoomVignette.gameObject.SetActive(starterAssetsInputs.zoom);
-            firstPersonController.ChangeRotationSpeed(currentWeaponSO.RotationSpeed);
+            ZoomActive(defaultFOV, currentWeaponSO.ZoomAmout, durationZoomIn, currentWeaponSO.RotationSpeed, starterAssetsInputs.zoom);
         }
         else
         {
@@ -102,14 +99,16 @@ public class ActiveWeapon : MonoBehaviour
                 elapsedTime = 0;
                 return;
             }
-            weaponCamera.fieldOfView = defaultFOV;
-            ProcessZoom(currentWeaponSO.ZoomAmout, defaultFOV, durationZoomOut);
-            ZoomVignette.gameObject.SetActive(starterAssetsInputs.zoom);
-            firstPersonController.ChangeRotationSpeed(defaultRotationSpeed);
-
-
+            ZoomActive(currentWeaponSO.ZoomAmout, defaultFOV, durationZoomOut, defaultRotationSpeed, starterAssetsInputs.zoom);
         }
+    }
 
+    private void ZoomActive(float a, float b, float duration, float rotationSpeed, bool zoomActive)
+    {
+        weaponCamera.fieldOfView = b;
+        ProcessZoom(a, b, duration);
+        ZoomVignette.gameObject.SetActive(zoomActive);
+        firstPersonController.ChangeRotationSpeed(rotationSpeed);
     }
 
     void ProcessZoom(float a, float b, float t)
@@ -123,6 +122,10 @@ public class ActiveWeapon : MonoBehaviour
     {
         if (currentWeapon)
         {
+            if (starterAssetsInputs.zoom)
+            {
+                ZoomActive(currentWeaponSO.ZoomAmout, defaultFOV, durationZoomOut, defaultRotationSpeed, false);
+            }
             Destroy(currentWeapon.gameObject);
         }
         Weapon newWeapon = Instantiate(weaponSO.weaponPrefab, transform).GetComponentInChildren<Weapon>();

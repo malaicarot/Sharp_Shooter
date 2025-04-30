@@ -39,7 +39,6 @@ public class SoundSingleton : MonoBehaviour
 
     }
 
-
     void PlayAudioClip(AudioSource audioSource, AudioClip audioClip)
     {
         audioSource.clip = audioClip;
