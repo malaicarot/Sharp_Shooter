@@ -1,6 +1,4 @@
 using UnityEngine;
-using StarterAssets;
-using Unity.VisualScripting;
 using Cinemachine;
 
 
@@ -27,7 +25,6 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, interactLayerMask, QueryTriggerInteraction.Ignore))
         {
             Instantiate(weaponSO.HitFlash, hit.point, Quaternion.identity);
-            // BulletPool.SingletonBulletPool.GetBullet(weaponSO.HitFlash.gameObject.name, hit.point, Quaternion.identity);
             EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
             enemyHealth?.TakeDamage(weaponSO.Damage);
         }

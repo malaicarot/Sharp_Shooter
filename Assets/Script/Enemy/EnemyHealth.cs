@@ -5,7 +5,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int health = 3;
     [SerializeField] ParticleSystem ExplodeParticleSystem;
     [SerializeField] Transform exactTransformRobot;
-    // GameManagers gameManagers;
 
     int currentHealth;
 
@@ -14,14 +13,15 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = health;
     }
 
-    public int Health
-    {
-        get { return currentHealth; }
-    }
+    // public int Health
+    // {
+    //     get { return currentHealth; }
+    // }
 
 
     public void TakeDamage(int dame)
     {
+
         currentHealth -= dame;
         if (currentHealth <= 0)
         {
@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour
         }
 
         //Nếu là opol object thì return
-        RobotMarkPool robot = gameObject.GetComponent<RobotMarkPool>();
+        RobotMarkPool robot = gameObject.GetComponentInParent<RobotMarkPool>();
         robot?.RobotRelease();
         if (robot == null)
         {

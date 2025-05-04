@@ -2,6 +2,7 @@ using System.Collections;
 using StarterAssets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Playables;
 using UnityEngine.ProBuilder;
 
@@ -11,7 +12,7 @@ public class GameManagers : MonoBehaviour
     public static GameManagers Instance;
     [SerializeField] GameObject winerPanel;
     [SerializeField] TextMeshProUGUI enemyLeftTextmeshPro;
-    [SerializeField] ProBuilderMesh ceiling;
+    [SerializeField] GameObject ceiling;
     [SerializeField] Vector3 bossPosition;
     [SerializeField] GameObject boss;
     [SerializeField] PlayableDirector playable;
@@ -39,19 +40,25 @@ public class GameManagers : MonoBehaviour
 
     void BossActive(bool status)
     {
-        boss.gameObject.SetActive(status);
-        // NavMeshAgent navMeshAgent = boss.GetComponent<NavMeshAgent>();
-        // Robot robot = boss.GetComponent<Robot>();
-        // navMeshAgent.enabled = status;
-        // robot.enabled = status;
+        if(boss == null) return;
+        NavMeshAgent navMeshAgent = boss.GetComponent<NavMeshAgent>();
+        Robot robot = boss.GetComponent<Robot>();
+        navMeshAgent.enabled = status;
+        robot.enabled = status;
+        Turret[] bossTurret = boss.GetComponentsInChildren<Turret>();
+        foreach (var item in bossTurret)
+        {
+            item.enabled = status;
+        }        
     }
     void BossAppear()
     {
-        ceiling.gameObject.SetActive(false);
-        StartCoroutine(WaitForMusic(3));
-        playable.Play();
-        StartCoroutine(BossFight());
         BossActive(true);
+        ceiling.SetActive(false);
+        StartCoroutine(WaitForMusic(3));
+        // playable.Play();
+        StartCoroutine(BossFight());
+
     }
 
     IEnumerator BossFight()
@@ -71,7 +78,6 @@ public class GameManagers : MonoBehaviour
         starterAssets.SetCursorState(false);
         StartCoroutine(WaitForMusic(4));
 
-        // SoundSingleton.soundInstance.PlayBackgroundMusic(4);
     }
     public void AdjustEnemy(int amount)
     {
@@ -79,7 +85,9 @@ public class GameManagers : MonoBehaviour
         if (enemyLeft <= 0)
         {
             enemyLeftTextmeshPro.text = $"{BOSS_ATTEND}";
+
             BossAppear();
+
         }
         else
         {

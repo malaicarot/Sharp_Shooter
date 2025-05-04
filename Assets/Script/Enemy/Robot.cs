@@ -12,6 +12,7 @@ public class Robot : EnemyHealth
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = FindFirstObjectByType<FirstPersonController>();
+        StartCoroutine(RobotWorkSound());
     }
 
     void Update()
