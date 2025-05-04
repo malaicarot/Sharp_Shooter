@@ -1,44 +1,43 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ButtonManagers : MonoBehaviour
 {
-    [SerializeField] GameObject settingsPanel;
-    [SerializeField] Slider backgroundMusicSlider;
-    [SerializeField] Slider SFXSlider;
-    [SerializeField] Slider SFXPlayerSlider;
+    // [SerializeField] GameObject settingsPanel;
+    // [SerializeField] Slider backgroundMusicSlider;
+    // [SerializeField] Slider SFXSlider;
+    // [SerializeField] Slider SFXPlayerSlider;
     const string MAIN_SCENE = "Main";
 
 
-    void Start()
-    {
-        GetVolumeValue(backgroundMusicSlider);
-        GetVolumeValue(SFXSlider);
-        GetVolumeValue(SFXPlayerSlider);
-        backgroundMusicSlider.onValueChanged.AddListener(SoundSingleton.soundInstance.SettingBackgroundMusicVolume);
-        SFXSlider.onValueChanged.AddListener(SoundSingleton.soundInstance.SettingSFXVolume);
-        SFXPlayerSlider.onValueChanged.AddListener(SoundSingleton.soundInstance.SettingSFXPlayerVolume);
-    }
+    // void Start()
+    // {
+    //     GetVolumeValue(backgroundMusicSlider);
+    //     GetVolumeValue(SFXSlider);
+    //     GetVolumeValue(SFXPlayerSlider);
+    //     backgroundMusicSlider.onValueChanged.AddListener(SoundSingleton.soundInstance.SettingBackgroundMusicVolume);
+    //     SFXSlider.onValueChanged.AddListener(SoundSingleton.soundInstance.SettingSFXVolume);
+    //     SFXPlayerSlider.onValueChanged.AddListener(SoundSingleton.soundInstance.SettingSFXPlayerVolume);
+    // }
 
 
-    void GetVolumeValue(Slider slider)
-    {
-        if (slider == null) return;
+    // void GetVolumeValue(Slider slider)
+    // {
+    //     if (slider == null) return;
 
-        if (slider == backgroundMusicSlider)
-        {
-            slider.value = SoundSingleton.soundInstance.backgroundMusicVolume;
-        }
-        else if (slider == SFXSlider)
-        {
-            slider.value = SoundSingleton.soundInstance.SFXVolume;
-        }
-        else
-        {
-            slider.value = SoundSingleton.soundInstance.SFXPlayerVolume;
-        }
-    }
+    //     if (slider == backgroundMusicSlider)
+    //     {
+    //         slider.value = SoundSingleton.soundInstance.backgroundMusicVolume;
+    //     }
+    //     else if (slider == SFXSlider)
+    //     {
+    //         slider.value = SoundSingleton.soundInstance.SFXVolume;
+    //     }
+    //     else
+    //     {
+    //         slider.value = SoundSingleton.soundInstance.SFXPlayerVolume;
+    //     }
+    // }
 
 
 
@@ -47,10 +46,10 @@ public class ButtonManagers : MonoBehaviour
         SceneManager.LoadScene(MAIN_SCENE);
     }
 
-    public void OnSettings()
-    {
-        settingsPanel.gameObject.SetActive(!settingsPanel.gameObject.activeInHierarchy);
-    }
+    // public void OnSettings()
+    // {
+    //     settingsPanel.gameObject.SetActive(!settingsPanel.gameObject.activeInHierarchy);
+    // }
     public void OnRestart()
     {
         int buildIndex = SceneManager.GetActiveScene().buildIndex;

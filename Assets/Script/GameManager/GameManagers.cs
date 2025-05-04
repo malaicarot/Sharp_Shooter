@@ -1,12 +1,9 @@
 using System.Collections;
 using StarterAssets;
 using TMPro;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Playables;
 using UnityEngine.ProBuilder;
-using UnityEngine.SceneManagement;
 
 
 public class GameManagers : MonoBehaviour
