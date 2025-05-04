@@ -1,6 +1,7 @@
 using System.Collections;
 using StarterAssets;
 using TMPro;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Playables;
@@ -41,10 +42,11 @@ public class GameManagers : MonoBehaviour
 
     void BossActive(bool status)
     {
-        NavMeshAgent navMeshAgent = boss.GetComponent<NavMeshAgent>();
-        Robot robot = boss.GetComponent<Robot>();
-        navMeshAgent.enabled = status;
-        robot.enabled = status;
+        boss.gameObject.SetActive(status);
+        // NavMeshAgent navMeshAgent = boss.GetComponent<NavMeshAgent>();
+        // Robot robot = boss.GetComponent<Robot>();
+        // navMeshAgent.enabled = status;
+        // robot.enabled = status;
     }
     void BossAppear()
     {

@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
         cinemachineImpulseSource.GenerateImpulse();
-        SoundSingleton.soundInstance.PlaySFX(weaponSO.indexSFX);
+        SoundSingleton.soundInstance.PlaySoundGun(weaponSO.indexSFX);
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, interactLayerMask, QueryTriggerInteraction.Ignore))

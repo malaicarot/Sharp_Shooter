@@ -5,12 +5,14 @@ public class SoundSingleton : MonoBehaviour
 {
     [SerializeField] AudioClip[] audioMusicClip;
     [SerializeField] AudioClip[] audioSFXClip;
-
     [SerializeField] AudioClip[] audioSFXPlayerClip;
+    [SerializeField] AudioClip[] audioSoundGunClip;
 
     AudioSource backgroundMusicSource;
     AudioSource SFXSource;
     AudioSource SFXPlayerSource;
+    AudioSource soundGunSource;
+
 
 
     public float backgroundMusicVolume;
@@ -34,6 +36,8 @@ public class SoundSingleton : MonoBehaviour
         backgroundMusicSource = GetComponents<AudioSource>()[0];
         SFXSource = GetComponents<AudioSource>()[1];
         SFXPlayerSource = GetComponents<AudioSource>()[2];
+        soundGunSource = GetComponents<AudioSource>()[3];
+
         GetVolumeValue();
     }
 
@@ -66,7 +70,11 @@ public class SoundSingleton : MonoBehaviour
     {
         SFXVolume = _soundVolume;
         SFXSource.volume = SFXVolume;
+
+        soundGunSource.volume = SFXVolume;
+
         PlayerPrefs.SetFloat("SFX", SFXVolume);
+
         PlayerPrefs.Save();
     }
 
@@ -77,7 +85,6 @@ public class SoundSingleton : MonoBehaviour
         PlayerPrefs.SetFloat("SFXPlayer", SFXPlayerVolume);
         PlayerPrefs.Save();
     }
-
 
     // Play Sound
     public void PlayBackgroundMusic(int index)
@@ -95,6 +102,12 @@ public class SoundSingleton : MonoBehaviour
     public void PlaySFXPlayer(int index)
     {
         PlayAudioClip(SFXPlayerSource, audioSFXPlayerClip[index]);
+
+    }
+
+    public void PlaySoundGun(int index)
+    {
+        PlayAudioClip(soundGunSource, audioSoundGunClip[index]);
 
     }
 

@@ -34,9 +34,9 @@ public class Turret : EnemyHealth
         while (playerHealth)
         {
             if(this.gameObject.CompareTag("Boss")){
-                SoundSingleton.soundInstance.PlaySFX(4);
+                SoundSingleton.soundInstance.PlaySFX(1);
             }else{
-                SoundSingleton.soundInstance.PlaySFX(3);
+                SoundSingleton.soundInstance.PlaySFX(0);
             }
             yield return new WaitForSeconds(fireRate);
             Projectile projectile = Instantiate(bulletTurret, turretProjectile.position, turretHead.rotation).GetComponent<Projectile>();

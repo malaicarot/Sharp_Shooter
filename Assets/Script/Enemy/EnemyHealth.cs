@@ -40,9 +40,9 @@ public class EnemyHealth : MonoBehaviour
         if (!this.gameObject.CompareTag("Boss"))
         {
             GameManagers.Instance.AdjustEnemy(-1);
-            SoundSingleton.soundInstance.PlaySFX(5);
+            SoundSingleton.soundInstance.PlaySFX(2);
         }else{
-            SoundSingleton.soundInstance.PlaySFX(6);
+            SoundSingleton.soundInstance.PlaySFX(3);
         }
 
         //Nếu là opol object thì return
